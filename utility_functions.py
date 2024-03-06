@@ -13,9 +13,7 @@ def get_err(evaluation_df, seqID, llda):
     eval_df = evaluation_df[evaluation_df['sequenceID'] == seqID]
     
     # get right row
-    left_llda  = eval_df['min.log.lambda']
-    right_llda = eval_df['max.log.lambda']
-    position = np.logical_and(left_llda < llda, llda < right_llda)
+    position = np.logical_and(eval_df['min.log.lambda'] < llda, llda < eval_df['max.log.lambda'])
     row = eval_df[position]
 
     # get total labels and total errors
@@ -63,14 +61,14 @@ def get_acc(eval_df, lldas_df):
         total_labels += n_labels
         total_err += n_errs
     acc = (total_labels - total_err)/total_labels
-    return acc
+    return acc*100
 
 
 
 
 # Hinged Square Loss
 class SquaredHingeLoss(nn.Module):
-    def __init__(self, margin=1):
+    def __init__(self, margin=0):
         super(SquaredHingeLoss, self).__init__()
         self.margin = margin
 

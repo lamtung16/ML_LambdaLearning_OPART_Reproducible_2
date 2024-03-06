@@ -11,7 +11,7 @@ from torch.utils.data import DataLoader, TensorDataset
 
 # Define the linear model
 class LinearModel(nn.Module):
-    def __init__(self, input_size=1):
+    def __init__(self, input_size):
         super(LinearModel, self).__init__()
         self.linear = nn.Linear(input_size, 1)
         self.initialize_parameters()
@@ -26,9 +26,11 @@ class LinearModel(nn.Module):
 
 
 # learn model
-def linear_training(inputs_df, outputs_df, chosen_feature, n_ites=300):
+def linear_training(inputs_df, outputs_df, chosen_feature, f_engineer, n_ites):
     # inputs
-    inputs = inputs_df.iloc[:, 1:][chosen_feature].to_numpy()
+    inputs = inputs_df[chosen_feature].to_numpy()
+    for i in range(len(f_engineer)):
+        inputs[:, i] = f_engineer[i](inputs[:, i])
     inputs = torch.Tensor(inputs)
 
     # outputs:
@@ -41,7 +43,7 @@ def linear_training(inputs_df, outputs_df, chosen_feature, n_ites=300):
     dataloader = DataLoader(dataset, batch_size=1, shuffle=False)
 
     # Instantiate model, loss function and opimizer
-    model = LinearModel()
+    model = LinearModel(inputs.shape[1])
     criterion = SquaredHingeLoss()
     optimizer = optim.Adam(model.parameters())
 
@@ -59,9 +61,11 @@ def linear_training(inputs_df, outputs_df, chosen_feature, n_ites=300):
 
 
 # get lldas
-def linear_evaluate(input_train_df, output_train_df, inputs_val_df, chosen_feature, n_ites):
-    model = linear_training(input_train_df, output_train_df, chosen_feature, n_ites)
-    inputs = inputs_val_df.iloc[:, 1:][chosen_feature].to_numpy()
+def linear_evaluate(input_train_df, output_train_df, inputs_val_df, chosen_feature, f_engineer, n_ites):
+    model = linear_training(input_train_df, output_train_df, chosen_feature, f_engineer, n_ites)
+    inputs = inputs_val_df[chosen_feature].to_numpy()
+    for i in range(len(f_engineer)):
+        inputs[:, i] = f_engineer[i](inputs[:, i])
     inputs = torch.Tensor(inputs)
     with torch.no_grad():
         lldas = model(inputs).numpy().reshape(-1)
