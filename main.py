@@ -50,35 +50,35 @@ def get_stat(dataset):
         delayed(BIC)(inputs_fold1_df),
         delayed(BIC)(inputs_fold2_df),
 
-        delayed(linear_evaluate)(inputs_fold2_df, outputs_fold2_df, inputs_fold1_df, ['length'], [loglog], 50),
-        delayed(linear_evaluate)(inputs_fold1_df, outputs_fold1_df, inputs_fold2_df, ['length'], [loglog], 50),
+        delayed(linear_evaluate)(inputs_fold2_df, outputs_fold2_df, inputs_fold1_df, ['length'], [loglog], 200),
+        delayed(linear_evaluate)(inputs_fold1_df, outputs_fold1_df, inputs_fold2_df, ['length'], [loglog], 200),
 
-        delayed(linear_evaluate)(inputs_fold2_df, outputs_fold2_df, inputs_fold1_df, ['length'], [identity], 50),
-        delayed(linear_evaluate)(inputs_fold1_df, outputs_fold1_df, inputs_fold2_df, ['length'], [identity], 50),
+        delayed(linear_evaluate)(inputs_fold2_df, outputs_fold2_df, inputs_fold1_df, ['length'], [identity], 200),
+        delayed(linear_evaluate)(inputs_fold1_df, outputs_fold1_df, inputs_fold2_df, ['length'], [identity], 200),
 
-        delayed(linear_evaluate)(inputs_fold2_df, outputs_fold2_df, inputs_fold1_df, ['sd', 'range_value', 'length', 'sum_diff'], [log, log, loglog, log], 50),
-        delayed(linear_evaluate)(inputs_fold1_df, outputs_fold1_df, inputs_fold2_df, ['sd', 'range_value', 'length', 'sum_diff'], [log, log, loglog, log], 50),
+        delayed(linear_evaluate)(inputs_fold2_df, outputs_fold2_df, inputs_fold1_df, ['sd', 'range_value', 'length', 'sum_diff'], [log, log, loglog, log], 200),
+        delayed(linear_evaluate)(inputs_fold1_df, outputs_fold1_df, inputs_fold2_df, ['sd', 'range_value', 'length', 'sum_diff'], [log, log, loglog, log], 200),
 
-        delayed(linear_evaluate)(inputs_fold2_df, outputs_fold2_df, inputs_fold1_df, ['sd', 'range_value', 'length', 'sum_diff'], [identity, identity, identity, identity], 50),
-        delayed(linear_evaluate)(inputs_fold1_df, outputs_fold1_df, inputs_fold2_df, ['sd', 'range_value', 'length', 'sum_diff'], [identity, identity, identity, identity], 50),
+        delayed(linear_evaluate)(inputs_fold2_df, outputs_fold2_df, inputs_fold1_df, ['sd', 'range_value', 'length', 'sum_diff'], [identity, identity, identity, identity], 200),
+        delayed(linear_evaluate)(inputs_fold1_df, outputs_fold1_df, inputs_fold2_df, ['sd', 'range_value', 'length', 'sum_diff'], [identity, identity, identity, identity], 200),
 
-        delayed(mlp_evaluate)(inputs_fold2_df, outputs_fold2_df, inputs_fold1_df, 1, 8,  ['sd', 'range_value', 'length', 'sum_diff'], [log, log, loglog, log], 100),
-        delayed(mlp_evaluate)(inputs_fold1_df, outputs_fold1_df, inputs_fold2_df, 1, 8,  ['sd', 'range_value', 'length', 'sum_diff'], [log, log, loglog, log], 100),
+        delayed(mlp_evaluate)(inputs_fold2_df, outputs_fold2_df, inputs_fold1_df, 1, 8,  ['sd', 'range_value', 'length', 'sum_diff'], [log, log, loglog, log], 500),
+        delayed(mlp_evaluate)(inputs_fold1_df, outputs_fold1_df, inputs_fold2_df, 1, 8,  ['sd', 'range_value', 'length', 'sum_diff'], [log, log, loglog, log], 500),
 
-        delayed(mlp_evaluate)(inputs_fold2_df, outputs_fold2_df, inputs_fold1_df, 1, 8,  ['sd', 'range_value', 'length', 'sum_diff'], [identity, identity, identity, identity], 100),
-        delayed(mlp_evaluate)(inputs_fold1_df, outputs_fold1_df, inputs_fold2_df, 1, 8,  ['sd', 'range_value', 'length', 'sum_diff'], [identity, identity, identity, identity], 100),
+        delayed(mlp_evaluate)(inputs_fold2_df, outputs_fold2_df, inputs_fold1_df, 1, 8,  ['sd', 'range_value', 'length', 'sum_diff'], [identity, identity, identity, identity], 500),
+        delayed(mlp_evaluate)(inputs_fold1_df, outputs_fold1_df, inputs_fold2_df, 1, 8,  ['sd', 'range_value', 'length', 'sum_diff'], [identity, identity, identity, identity], 500),
 
-        delayed(mlp_evaluate)(inputs_fold2_df, outputs_fold2_df, inputs_fold1_df, 2, 16, ['sd', 'range_value', 'length', 'sum_diff'], [log, log, loglog, log], 150),
-        delayed(mlp_evaluate)(inputs_fold1_df, outputs_fold1_df, inputs_fold2_df, 2, 16, ['sd', 'range_value', 'length', 'sum_diff'], [log, log, loglog, log], 150),
+        delayed(mlp_evaluate)(inputs_fold2_df, outputs_fold2_df, inputs_fold1_df, 2, 16, ['sd', 'range_value', 'length', 'sum_diff'], [log, log, loglog, log], 500),
+        delayed(mlp_evaluate)(inputs_fold1_df, outputs_fold1_df, inputs_fold2_df, 2, 16, ['sd', 'range_value', 'length', 'sum_diff'], [log, log, loglog, log], 500),
 
-        delayed(mlp_evaluate)(inputs_fold2_df, outputs_fold2_df, inputs_fold1_df, 2, 16, ['sd', 'range_value', 'length', 'sum_diff'], [identity, identity, identity, identity], 150),
-        delayed(mlp_evaluate)(inputs_fold1_df, outputs_fold1_df, inputs_fold2_df, 2, 16, ['sd', 'range_value', 'length', 'sum_diff'], [identity, identity, identity, identity], 150),
+        delayed(mlp_evaluate)(inputs_fold2_df, outputs_fold2_df, inputs_fold1_df, 2, 16, ['sd', 'range_value', 'length', 'sum_diff'], [identity, identity, identity, identity], 500),
+        delayed(mlp_evaluate)(inputs_fold1_df, outputs_fold1_df, inputs_fold2_df, 2, 16, ['sd', 'range_value', 'length', 'sum_diff'], [identity, identity, identity, identity], 500),
 
-        delayed(mlp_evaluate)(inputs_fold2_df, outputs_fold2_df, inputs_fold1_df, 3, 32, ['sd', 'range_value', 'length', 'sum_diff'], [log, log, loglog, log], 200),
-        delayed(mlp_evaluate)(inputs_fold1_df, outputs_fold1_df, inputs_fold2_df, 3, 32, ['sd', 'range_value', 'length', 'sum_diff'], [log, log, loglog, log], 200),
+        delayed(mlp_evaluate)(inputs_fold2_df, outputs_fold2_df, inputs_fold1_df, 3, 32, ['sd', 'range_value', 'length', 'sum_diff'], [log, log, loglog, log], 500),
+        delayed(mlp_evaluate)(inputs_fold1_df, outputs_fold1_df, inputs_fold2_df, 3, 32, ['sd', 'range_value', 'length', 'sum_diff'], [log, log, loglog, log], 500),
 
-        delayed(mlp_evaluate)(inputs_fold2_df, outputs_fold2_df, inputs_fold1_df, 3, 32, ['sd', 'range_value', 'length', 'sum_diff'], [identity, identity, identity, identity], 200),
-        delayed(mlp_evaluate)(inputs_fold1_df, outputs_fold1_df, inputs_fold2_df, 3, 32, ['sd', 'range_value', 'length', 'sum_diff'], [identity, identity, identity, identity], 200),
+        delayed(mlp_evaluate)(inputs_fold2_df, outputs_fold2_df, inputs_fold1_df, 3, 32, ['sd', 'range_value', 'length', 'sum_diff'], [identity, identity, identity, identity], 500),
+        delayed(mlp_evaluate)(inputs_fold1_df, outputs_fold1_df, inputs_fold2_df, 3, 32, ['sd', 'range_value', 'length', 'sum_diff'], [identity, identity, identity, identity], 500),
     ]
     lldas_test_fold1_df_BIC,          lldas_test_fold2_df_BIC,         \
     lldas_test_fold1_df_linear_2,     lldas_test_fold2_df_linear_2,    \
