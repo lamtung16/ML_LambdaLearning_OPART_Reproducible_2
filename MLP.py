@@ -52,7 +52,7 @@ def normalize_data(tensor):
 
 
 # learn model
-def mlp_training(inputs_df, outputs_df, hidden_layers, hidden_size, chosen_feature, f_engineer, n_ites=500):
+def mlp_training(inputs_df, outputs_df, hidden_layers, hidden_size, chosen_feature, f_engineer, n_ites, verbose):
     # inputs
     inputs = inputs_df[chosen_feature].to_numpy()
 
@@ -73,21 +73,40 @@ def mlp_training(inputs_df, outputs_df, hidden_layers, hidden_size, chosen_featu
     dataset    = TensorDataset(inputs, outputs)
     dataloader = DataLoader(dataset, batch_size=1, shuffle=False)
 
-    # Instantiate model, loss function and opimizer
+    # Instantiate model, loss function and optimizer
     model = MLPModel(inputs.shape[1], hidden_layers, hidden_size)
     criterion = SquaredHingeLoss()
     optimizer = optim.Adam(model.parameters())
 
+    # Initialize early stopping parameters
+    best_loss = float('inf')
+    patience = 5  # Number of epochs to wait before early stopping
+    num_bad_epochs = 0
+
     # Training loop
-    for _ in range(n_ites):
+    for epoch in range(n_ites):
         for features, labels in dataloader:
             optimizer.zero_grad()
-            outputs = model(features)
-            loss = criterion(outputs, labels)
+            loss = criterion(model(features), labels)
             loss.backward()
             optimizer.step()
 
+        # Calculate validation loss
+        val_loss = criterion(model(inputs), outputs)
+
+        # Check for early stopping
+        if val_loss < best_loss:
+            best_loss = val_loss
+            num_bad_epochs = 0
+        else:
+            num_bad_epochs += 1
+            if num_bad_epochs >= patience:
+                if verbose==1:
+                    print(f"Stopping early at epoch {epoch}, loss: {val_loss}")
+                break
+
     return model
+
 
 
 

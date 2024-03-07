@@ -26,7 +26,7 @@ class LinearModel(nn.Module):
 
 
 # learn model
-def linear_training(inputs_df, outputs_df, chosen_feature, f_engineer, n_ites):
+def linear_training(inputs_df, outputs_df, chosen_feature, f_engineer, batch_size, margin, n_ites, verbose):
     # inputs
     inputs = inputs_df[chosen_feature].to_numpy()
     for i in range(len(f_engineer)):
@@ -40,21 +40,42 @@ def linear_training(inputs_df, outputs_df, chosen_feature, f_engineer, n_ites):
 
     # prepare training dataset
     dataset    = TensorDataset(inputs, outputs)
-    dataloader = DataLoader(dataset, batch_size=1, shuffle=False)
+    dataloader = DataLoader(dataset, batch_size, shuffle=False)
 
-    # Instantiate model, loss function and opimizer
+    # Instantiate model, loss function and optimizer
     model = LinearModel(inputs.shape[1])
-    criterion = SquaredHingeLoss()
+    criterion = SquaredHingeLoss(margin)
     optimizer = optim.Adam(model.parameters())
 
+    # Initialize early stopping parameters
+    best_loss = float('inf')
+    patience = 5  # Number of epochs to wait before early stopping
+    num_bad_epochs = 0
+
     # Training loop
-    for _ in range(n_ites):
-        for inputs, labels in dataloader:
+    for i in range(n_ites):
+        for batch_input, batch_output in dataloader:
             optimizer.zero_grad()
-            outputs = model(inputs)
-            loss = criterion(outputs, labels)
+            loss = criterion(model(batch_input), batch_output)
             loss.backward()
             optimizer.step()
+
+        # Calculate validation loss
+        val_loss = criterion(model(inputs), outputs)
+
+        if verbose==1:
+            print(f"{i}, loss: {val_loss}")
+
+        # Check for early stopping
+        if val_loss < best_loss:
+            best_loss = val_loss
+            num_bad_epochs = 0
+        else:
+            num_bad_epochs += 1
+            if num_bad_epochs >= patience:
+                if verbose==1:
+                    print(f"Stopping early at epoch {i}, loss: {val_loss}")
+                break
 
     return model
 

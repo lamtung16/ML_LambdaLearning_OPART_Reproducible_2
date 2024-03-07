@@ -68,7 +68,7 @@ def get_acc(eval_df, lldas_df):
 
 # Hinged Square Loss
 class SquaredHingeLoss(nn.Module):
-    def __init__(self, margin=0):
+    def __init__(self, margin=1):
         super(SquaredHingeLoss, self).__init__()
         self.margin = margin
 
