@@ -17,8 +17,10 @@ class MLPModel(nn.Module):
         super(MLPModel, self).__init__()
         self.input_size = input_size
         self.hidden_layers = hidden_layers
-        self.hidden_size = hidden_size
 
+        self.linear_model = nn.Linear(input_size, 1) 
+        
+        self.hidden_size = hidden_size
         self.input_layer = nn.Linear(input_size, hidden_size)
         self.hidden = nn.ModuleList([nn.Linear(hidden_size, hidden_size) for _ in range(hidden_layers - 1)])
         self.output_layer = nn.Linear(hidden_size, 1)
@@ -27,14 +29,17 @@ class MLPModel(nn.Module):
 
     def initialize_parameters(self):
         for param in self.parameters():
-            init.constant_(param, 0.5)
+            init.normal_(param, mean=0, std=2)
 
     def forward(self, x):
-        x = torch.relu(self.input_layer(x))
-        for layer in self.hidden:
-            x = torch.relu(layer(x))
-        x = self.output_layer(x)
-        return x
+        if(self.hidden_layers == 0):
+            return self.linear_model(x)
+        else:
+            x = torch.relu(self.input_layer(x))
+            for layer in self.hidden:
+                x = torch.relu(layer(x))
+            x = self.output_layer(x)
+            return x
 
 
 
@@ -52,7 +57,7 @@ def normalize_data(tensor):
 
 
 # learn model
-def mlp_training(inputs_df, outputs_df, hidden_layers, hidden_size, chosen_feature, f_engineer, n_ites, verbose):
+def mlp_training(inputs_df, outputs_df, hidden_layers, hidden_size, chosen_feature, f_engineer, normalize, batch_size, margin, n_ites, lr, patience, verbose, epoch_step):
     # inputs
     inputs = inputs_df[chosen_feature].to_numpy()
 
@@ -62,7 +67,8 @@ def mlp_training(inputs_df, outputs_df, hidden_layers, hidden_size, chosen_featu
     inputs = torch.Tensor(inputs)
 
     # normalize input
-    inputs = normalize_data(inputs)
+    if normalize == 1:
+        inputs = normalize_data(inputs)
 
     # outputs
     targets_low  = torch.Tensor(outputs_df['min.log.lambda'].to_numpy().reshape(-1,1))
@@ -71,20 +77,20 @@ def mlp_training(inputs_df, outputs_df, hidden_layers, hidden_size, chosen_featu
 
     # prepare training dataset
     dataset    = TensorDataset(inputs, outputs)
-    dataloader = DataLoader(dataset, batch_size=1, shuffle=False)
+    dataloader = DataLoader(dataset, batch_size, shuffle=False)
 
     # Instantiate model, loss function and optimizer
     model = MLPModel(inputs.shape[1], hidden_layers, hidden_size)
-    criterion = SquaredHingeLoss()
-    optimizer = optim.Adam(model.parameters())
+    criterion = SquaredHingeLoss(margin)
+    optimizer = optim.Adam(model.parameters(), lr)
 
     # Initialize early stopping parameters
     best_loss = float('inf')
-    patience = 5  # Number of epochs to wait before early stopping
     num_bad_epochs = 0
 
     # Training loop
-    for epoch in range(n_ites):
+    for epoch in range(n_ites+1):
+        model.train()
         for features, labels in dataloader:
             optimizer.zero_grad()
             loss = criterion(model(features), labels)
@@ -93,6 +99,9 @@ def mlp_training(inputs_df, outputs_df, hidden_layers, hidden_size, chosen_featu
 
         # Calculate validation loss
         val_loss = criterion(model(inputs), outputs)
+        if verbose==1:
+            if epoch % epoch_step == 0:
+                print(f"{epoch}, loss: {val_loss}")
 
         # Check for early stopping
         if val_loss < best_loss:
@@ -105,7 +114,7 @@ def mlp_training(inputs_df, outputs_df, hidden_layers, hidden_size, chosen_featu
                     print(f"Stopping early at epoch {epoch}, loss: {val_loss}")
                 break
 
-    return model
+    return model, val_loss.item()
 
 
 
@@ -180,7 +189,7 @@ def mlp_evaluate(input_train_df, output_train_df, inputs_val_df, hidden_layers, 
     best_n_ite = cv_learn(2, cv_inputs, cv_outputs, hidden_layers, hidden_size, 1, n_ites)
     
     # trained model
-    model = mlp_training(input_train_df, output_train_df, hidden_layers, hidden_size, chosen_feature, f_engineer, best_n_ite)
+    model, _ = mlp_training(input_train_df, output_train_df, hidden_layers, hidden_size, chosen_feature, f_engineer, best_n_ite)
     
     # test inputs
     inputs = inputs_val_df[chosen_feature].to_numpy()
