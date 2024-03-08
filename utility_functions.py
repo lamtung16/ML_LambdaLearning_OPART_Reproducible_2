@@ -32,13 +32,13 @@ def add_row_to_csv(path, head, row):
         writer = csv.writer(csvfile)
         if not file_exists:                         # If the file doesn't exist, write the header
             writer.writerow(head)
-        with open(path, 'r', newline='') as csvfile:
-            reader = csv.reader(csvfile)
-            for existing_row in reader:             # Iterate over each row
-                if existing_row[0] == row[0]:             # Check if the row already exists
-                    is_row_exist = True
-        if(not is_row_exist):
-            writer.writerow(row)                    # Write the row
+        # with open(path, 'r', newline='') as csvfile:
+        #     reader = csv.reader(csvfile)
+        #     for existing_row in reader:             # Iterate over each row
+        #         if existing_row[0] == row[0]:             # Check if the row already exists
+        #             is_row_exist = True
+        # if(not is_row_exist):
+        writer.writerow(row)                    # Write the row
 
 
 
