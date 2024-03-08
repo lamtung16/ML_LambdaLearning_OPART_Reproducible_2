@@ -17,7 +17,7 @@ def get_err(evaluation_df, seqID, llda):
     row = eval_df[position]
 
     # get total labels and total errors
-    n_labels = (row['possible.fp'] + row['possible.fn']).item()
+    n_labels = row['labels'].item()
     n_errs = row['errors'].item()
 
     return n_labels, n_errs
