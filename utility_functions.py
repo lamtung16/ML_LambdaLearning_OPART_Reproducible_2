@@ -32,22 +32,8 @@ def add_row_to_csv(path, head, row):
         writer = csv.writer(csvfile)
         if not file_exists:                         # If the file doesn't exist, write the header
             writer.writerow(head)
-        # with open(path, 'r', newline='') as csvfile:
-        #     reader = csv.reader(csvfile)
-        #     for existing_row in reader:             # Iterate over each row
-        #         if existing_row[0] == row[0]:             # Check if the row already exists
-        #             is_row_exist = True
-        # if(not is_row_exist):
-        writer.writerow(row)                    # Write the row
+        writer.writerow(row)                        # Write the row
 
-
-
-# record
-def record(method_name, df_fold1, df_fold2, acc_test_fold1, acc_test_fold2, output_df_path, acc_rate_path):
-    # save df into csv
-    df_fold1.to_csv(output_df_path + method_name + '.fold1.csv', index=False)
-    df_fold2.to_csv(output_df_path + method_name + '.fold2.csv', index=False)
-    add_row_to_csv(acc_rate_path, ["method", "fold1.test", "fold2.test"], [method_name, acc_test_fold1, acc_test_fold2])
 
 
 
