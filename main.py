@@ -10,6 +10,7 @@ from MLP import mlp_evaluate
 
 # dataset
 dataset = 'detailed'
+# dataset = 'systematic'
 
 # training data
 fold_path = 'training_data/' + dataset + '/folds.csv'
