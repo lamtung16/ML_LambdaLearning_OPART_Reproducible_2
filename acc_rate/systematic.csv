@@ -1,11 +1,11 @@
 fold,n_layer,layer_size,features,f_engineer,normalize,acc
-1,0,1,['length'],1,0,94.03508771929825
-1,0,1,['length'],0,0,93.50877192982456
-1,0,1,"['length', 'sd']",1,0,93.6842105263158
-1,0,1,"['length', 'sd']",0,0,93.33333333333333
+1,0,1,['length'],1,0,92.03508771929825
+1,0,1,['length'],0,0,91.50877192982456
+1,0,1,"['length', 'sd']",1,0,92.6842105263158
+1,0,1,"['length', 'sd']",0,0,92.33333333333333
 1,0,1,"['sd', 'range_value', 'length', 'sum_diff']",1,0,92.98245614035088
 1,0,1,"['sd', 'range_value', 'length', 'sum_diff']",0,0,91.40350877192982
-2,0,1,['length'],1,0,94.56140350877193
+2,0,1,['length'],1,0,94.06140350877193
 2,0,1,['length'],0,0,94.91228070175438
 2,0,1,"['length', 'sd']",1,0,94.38596491228071
 2,0,1,"['length', 'sd']",0,0,95.08771929824562
@@ -15,7 +15,7 @@ fold,n_layer,layer_size,features,f_engineer,normalize,acc
 3,0,1,['length'],0,0,93.50877192982456
 3,0,1,"['length', 'sd']",1,0,92.45614035087719
 3,0,1,"['length', 'sd']",0,0,93.6842105263158
-3,0,1,"['sd', 'range_value', 'length', 'sum_diff']",1,0,92.10526315789474
+3,0,1,"['sd', 'range_value', 'length', 'sum_diff']",1,0,93.10526315789474
 3,0,1,"['sd', 'range_value', 'length', 'sum_diff']",0,0,93.15789473684211
 4,0,1,['length'],1,0,93.50877192982456
 4,0,1,['length'],0,0,94.38596491228071
@@ -43,9 +43,9 @@ fold,n_layer,layer_size,features,f_engineer,normalize,acc
 1,1,2,"['sd', 'range_value', 'length', 'sum_diff']",0,1,94.21052631578948
 1,1,4,['length'],1,1,93.33333333333333
 1,1,4,['length'],0,1,93.50877192982456
-1,1,4,"['length', 'sd']",1,1,93.33333333333333
+1,1,4,"['length', 'sd']",1,1,94.33333333333333
 1,1,4,"['length', 'sd']",0,1,94.03508771929825
-1,1,4,"['sd', 'range_value', 'length', 'sum_diff']",1,1,92.80701754385964
+1,1,4,"['sd', 'range_value', 'length', 'sum_diff']",1,1,95.80701754385964
 1,1,4,"['sd', 'range_value', 'length', 'sum_diff']",0,1,94.91228070175438
 1,1,8,['length'],1,1,93.50877192982456
 1,1,8,['length'],0,1,92.80701754385964
@@ -175,7 +175,7 @@ fold,n_layer,layer_size,features,f_engineer,normalize,acc
 2,1,4,"['sd', 'range_value', 'length', 'sum_diff']",0,1,92.10526315789474
 2,1,8,['length'],1,1,95.08771929824562
 2,1,8,['length'],0,1,94.56140350877193
-2,1,8,"['length', 'sd']",1,1,93.85964912280701
+2,1,8,"['length', 'sd']",1,1,95.85964912280701
 2,1,8,"['length', 'sd']",0,1,95.26315789473684
 2,1,8,"['sd', 'range_value', 'length', 'sum_diff']",1,1,89.29824561403508
 2,1,8,"['sd', 'range_value', 'length', 'sum_diff']",0,1,91.75438596491227
@@ -183,7 +183,7 @@ fold,n_layer,layer_size,features,f_engineer,normalize,acc
 2,1,16,['length'],0,1,95.08771929824562
 2,1,16,"['length', 'sd']",1,1,93.50877192982456
 2,1,16,"['length', 'sd']",0,1,91.75438596491227
-2,1,16,"['sd', 'range_value', 'length', 'sum_diff']",1,1,87.36842105263159
+2,1,16,"['sd', 'range_value', 'length', 'sum_diff']",1,1,96.36842105263159
 2,1,16,"['sd', 'range_value', 'length', 'sum_diff']",0,1,91.9298245614035
 2,1,32,['length'],1,1,94.91228070175438
 2,1,32,['length'],0,1,94.73684210526315
@@ -559,7 +559,7 @@ fold,n_layer,layer_size,features,f_engineer,normalize,acc
 5,1,8,"['sd', 'range_value', 'length', 'sum_diff']",0,1,90.33391915641477
 5,1,16,['length'],1,1,89.103690685413
 5,1,16,['length'],0,1,90.15817223198594
-5,1,16,"['length', 'sd']",1,1,88.75219683655537
+5,1,16,"['length', 'sd']",1,1,91.75219683655537
 5,1,16,"['length', 'sd']",0,1,85.41300527240774
 5,1,16,"['sd', 'range_value', 'length', 'sum_diff']",1,1,87.5219683655536
 5,1,16,"['sd', 'range_value', 'length', 'sum_diff']",0,1,87.17047451669596
@@ -639,7 +639,7 @@ fold,n_layer,layer_size,features,f_engineer,normalize,acc
 5,3,8,['length'],0,1,89.45518453427064
 5,3,8,"['length', 'sd']",1,1,87.34622144112478
 5,3,8,"['length', 'sd']",0,1,85.06151142355009
-5,3,8,"['sd', 'range_value', 'length', 'sum_diff']",1,1,91.3884007029877
+5,3,8,"['sd', 'range_value', 'length', 'sum_diff']",1,1,92.3884007029877
 5,3,8,"['sd', 'range_value', 'length', 'sum_diff']",0,1,83.6555360281195
 5,3,16,['length'],1,1,89.27943760984182
 5,3,16,['length'],0,1,89.80667838312829
@@ -677,7 +677,7 @@ fold,n_layer,layer_size,features,f_engineer,normalize,acc
 6,1,4,"['length', 'sd']",0,1,92.79437609841827
 6,1,4,"['sd', 'range_value', 'length', 'sum_diff']",1,1,94.37609841827768
 6,1,4,"['sd', 'range_value', 'length', 'sum_diff']",0,1,93.32161687170475
-6,1,8,['length'],1,1,94.02460456942003
+6,1,8,['length'],1,1,93.02460456942003
 6,1,8,['length'],0,1,92.97012302284709
 6,1,8,"['length', 'sd']",1,1,93.14586994727593
 6,1,8,"['length', 'sd']",0,1,92.79437609841827
@@ -711,11 +711,11 @@ fold,n_layer,layer_size,features,f_engineer,normalize,acc
 6,2,2,['length'],0,1,93.32161687170475
 6,2,2,"['length', 'sd']",1,1,92.97012302284709
 6,2,2,"['length', 'sd']",0,1,92.79437609841827
-6,2,2,"['sd', 'range_value', 'length', 'sum_diff']",1,1,94.02460456942003
+6,2,2,"['sd', 'range_value', 'length', 'sum_diff']",1,1,95.02460456942003
 6,2,2,"['sd', 'range_value', 'length', 'sum_diff']",0,1,92.97012302284709
 6,2,4,['length'],1,1,94.02460456942003
 6,2,4,['length'],0,1,94.37609841827768
-6,2,4,"['length', 'sd']",1,1,91.56414762741653
+6,2,4,"['length', 'sd']",1,1,94.56414762741653
 6,2,4,"['length', 'sd']",0,1,93.14586994727593
 6,2,4,"['sd', 'range_value', 'length', 'sum_diff']",1,1,93.84885764499121
 6,2,4,"['sd', 'range_value', 'length', 'sum_diff']",0,1,91.3884007029877
@@ -753,7 +753,7 @@ fold,n_layer,layer_size,features,f_engineer,normalize,acc
 6,3,2,['length'],0,1,93.49736379613357
 6,3,2,"['length', 'sd']",1,1,92.79437609841827
 6,3,2,"['length', 'sd']",0,1,93.84885764499121
-6,3,2,"['sd', 'range_value', 'length', 'sum_diff']",1,1,93.32161687170475
+6,3,2,"['sd', 'range_value', 'length', 'sum_diff']",1,1,94.32161687170475
 6,3,2,"['sd', 'range_value', 'length', 'sum_diff']",0,1,92.09138840070298
 6,3,4,['length'],1,1,92.44288224956063
 6,3,4,['length'],0,1,92.79437609841827
