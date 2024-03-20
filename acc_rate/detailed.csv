@@ -16,7 +16,7 @@ fold,n_layer,layer_size,features,f_engineer,normalize,acc
 3,0,1,"['length', 'sd']",1,0,94.7517730496454
 3,0,1,"['length', 'sd']",0,0,93.90070921985816
 3,0,1,"['sd', 'range_value', 'length', 'sum_diff']",1,0,95.60283687943263
-3,0,1,"['sd', 'range_value', 'length', 'sum_diff']",0,0,78.01418439716312
+3,0,1,"['sd', 'range_value', 'length', 'sum_diff']",0,0,94.01418439716312
 4,0,1,['length'],1,0,93.75866851595008
 4,0,1,['length'],0,0,94.03606102635229
 4,0,1,"['length', 'sd']",1,0,94.86823855755895
