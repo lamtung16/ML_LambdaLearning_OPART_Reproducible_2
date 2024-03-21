@@ -173,7 +173,7 @@ def cv_learn(n_splits, X, y, n_hiddens, layer_size, batch_size, n_ites):
 
 # get lldas
 def mlp_evaluate(input_train_df, output_train_df, inputs_val_df, hidden_layers, hidden_size, chosen_feature, f_engineer, 
-                 normalize, batch_size=1000, margin=1, n_ites=20000, lr=0.001, patience=500, verbose=0, epoch_step=100):
+                 normalize, batch_size=10000, margin=1, n_ites=50000, lr=0.001, patience=5000, verbose=0, epoch_step=100):
     # cross-validation to get best number of iterations
     # cv inputs
     cv_inputs = input_train_df[chosen_feature].to_numpy()
