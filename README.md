@@ -18,3 +18,4 @@
     ![Plot](figures/detailed/acc_comparison.jpg)
     ![Plot](figures/detailed/feature_engineer_comparison.jpg)
     ![Plot](figures/detailed/mlp_3_layers_4_features.jpg)
+    ![Plot](figures/detailed/features_targets.jpg)
