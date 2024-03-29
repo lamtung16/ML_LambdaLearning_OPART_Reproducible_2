@@ -1,4 +1,5 @@
 method,feature,acc
+BIC.1, feature engineering,91.983268
 linear.1,feature engineering,92.35597231215121
 linear.1,raw data,93.02451207103876
 linear.2,feature engineering,92.66455462029415
