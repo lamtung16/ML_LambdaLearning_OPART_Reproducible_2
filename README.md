@@ -13,7 +13,7 @@
 
 ## Generating Figures from Scratch:
 - Accuracy Rate Comparison figure:
-  - Run `main.py` to generate a CSV file containing accuracy rates for each method. Add new methods if necessary.
+  - Run `main_MLP.py` to generate a CSV file containing accuracy rates for each method. Add new methods if necessary (running `main_BIC.py` and `main_L1reg.py`).
   - Execute `figure_acc_compare.ipynb`, `figure_feature_engineer_compare.ipynb`, `figure_mlp_compare.ipynb`, `figure_features_target.ipynb`. The resulting figure will be generated in the `figures` folder.
     ![Plot](figures/detailed/acc_comparison.jpg)
     ![Plot](figures/detailed/feature_engineer_comparison.jpg)
