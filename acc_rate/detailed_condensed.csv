@@ -6,6 +6,7 @@ linear.2,feature engineering,94.06011080748198
 linear.2,raw data,93.33766802082744
 linear.4,feature engineering,95.09841976996603
 linear.4,raw data,92.66662502815088
+linear.all,feature engineering,95.76945168034249
 mlp.1,feature engineering,95.92495313569157
 mlp.1,raw data,94.61691283307032
 mlp.2,feature engineering,99.13178081912899

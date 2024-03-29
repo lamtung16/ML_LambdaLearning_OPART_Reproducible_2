@@ -25,3 +25,7 @@ for dataset in ['detailed', 'systematic']:
         lldas_df = BIC(fold_inputs_df)
         total_acc += get_acc(fold_eval_df, lldas_df)
     print("dataset: %8s \t acc: %f" % (dataset, total_acc/6))
+
+
+# dataset: detailed        acc: 86.023357
+# dataset: systematic      acc: 91.983268
