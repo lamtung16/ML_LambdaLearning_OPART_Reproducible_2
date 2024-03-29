@@ -15,7 +15,6 @@
 - Accuracy Rate Comparison figure:
   - Run `main_MLP.py` to generate a CSV file containing accuracy rates for each method. Add new methods if necessary (running `main_BIC.py` and `main_L1reg.py`).
   - Execute `figure_acc_compare.ipynb`, `figure_feature_engineer_compare.ipynb`, `figure_mlp_compare.ipynb`, `figure_features_target.ipynb`. The resulting figure will be generated in the `figures` folder.
-    ![Plot](figures/detailed/acc_comparison.jpg)
-    ![Plot](figures/detailed/feature_engineer_comparison.jpg)
-    ![Plot](figures/detailed/mlp_3_layers_4_features.jpg)
-    ![Plot](figures/detailed/features_targets.jpg)
+    ![Plot](figures/all/acc_compare.jpg)
+    ![Plot](figures/all/feature_engineer_compare.jpg)
+    ![Plot](figures/all/mlp.jpg)
