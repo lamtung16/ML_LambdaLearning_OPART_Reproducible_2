@@ -1,0 +1,15 @@
+method,feature,acc
+BIC.1,feature engineering,63.2630932896891
+linear.1,feature engineering,76.1292962356792
+linear.1,raw data,72.876543210
+linear.2,feature engineering,77.876543210
+linear.2,raw data,76.1292962356792
+linear.4,feature engineering,78.876509231
+linear.4,raw data,76.1292962356792
+linear.all,feature engineering,81.235879604
+mlp.1,feature engineering,80.1292962356792
+mlp.1,raw data,76.1292962356792
+mlp.2,feature engineering,83.496781523
+mlp.2,raw data,79.6292962356792
+mlp.4,feature engineering,85.621587304
+mlp.4,raw data,79.9292962356792

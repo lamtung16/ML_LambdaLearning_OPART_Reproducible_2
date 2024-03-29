@@ -5,7 +5,7 @@ from BIC import BIC
 
 
 
-for dataset in ['detailed', 'systematic']:
+for dataset in ['cancer', 'detailed', 'systematic']:
 
     # training data
     fold_path = 'training_data/' + dataset + '/folds.csv'
