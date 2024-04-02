@@ -72,8 +72,11 @@ for dataset in ['cancer', 'detailed', 'systematic']:
     outputs_df = pd.read_csv(outputs_path)
     evaluation_df = pd.read_csv(evaluation_path)
 
+    # number of folds
+    n_folds = fold_df['fold'].nunique()
+
     total_acc = 0
-    for fold in range(1, 7):
+    for fold in range(1, n_folds + 1):
         train_inputs_df, train_outputs_df, train_eval_df, test_inputs_df, test_eval_df = get_fold_dfs(fold, fold_df, inputs_df, outputs_df, evaluation_df)
 
         # inputs

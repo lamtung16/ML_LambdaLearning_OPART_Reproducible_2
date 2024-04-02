@@ -28,6 +28,9 @@ for dataset in ['cancer', 'detailed', 'systematic']:
     outputs_df = pd.read_csv(outputs_path)
     evaluation_df = pd.read_csv(evaluation_path)
 
+    # number of folds
+    n_folds = fold_df['fold'].nunique()
+
     # feature engineering transformation
     identity = lambda x: x
     log      = lambda x: np.log(x)
@@ -86,7 +89,7 @@ for dataset in ['cancer', 'detailed', 'systematic']:
     linear_results = Parallel(n_jobs=-1)(
         delayed(process_combination)(
             fold, 0, 1, feature_dict, 0
-        ) for fold in range(1, 7)
+        ) for fold in range(1, n_folds + 1)
         for feature_dict in feature_dict_list
     )
 
@@ -100,7 +103,7 @@ for dataset in ['cancer', 'detailed', 'systematic']:
     mlp_results = Parallel(n_jobs=-1)(
         delayed(process_combination)(
             fold, n_layer, layer_size, feature_dict, 1
-        ) for fold in range(1, 7)
+        ) for fold in range(1, n_folds + 1)
         for n_layer in n_layer_list
         for layer_size in layer_size_list
         for feature_dict in feature_dict_list

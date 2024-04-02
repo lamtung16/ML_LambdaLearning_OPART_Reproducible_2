@@ -17,8 +17,12 @@ for dataset in ['cancer', 'detailed', 'systematic']:
     inputs_df = pd.read_csv(inputs_path)
     evaluation_df = pd.read_csv(evaluation_path)
 
+    # number of folds
+    n_folds = fold_df['fold'].nunique()
+
+    # main function
     total_acc = 0
-    for fold in range(1, 7):
+    for fold in range(1, n_folds + 1):
         fold_inputs_df = inputs_df[inputs_df['sequenceID'].isin(fold_df[fold_df['fold'] == fold]['sequenceID'])]
         fold_eval_df = evaluation_df[evaluation_df['sequenceID'].isin(fold_df[fold_df['fold'] == fold]['sequenceID'])]
 
