@@ -174,8 +174,22 @@ def cv_learn(n_splits, X, y, n_hiddens, layer_size, batch_size, n_ites):
 # get lldas
 def mlp_evaluate(input_train_df, output_train_df, inputs_val_df, hidden_layers, hidden_size, chosen_feature, f_engineer, 
                  normalize, batch_size=10000, margin=1, n_ites=50000, lr=0.001, patience=5000, verbose=0, epoch_step=100):
+    # cross-validation to get best number of iterations
+    # cv inputs
+    cv_inputs = input_train_df[chosen_feature].to_numpy()
+    # feature engineering
+    for i in range(len(f_engineer)):
+        cv_inputs[:, i] = f_engineer[i](cv_inputs[:, i])
+    cv_inputs = torch.Tensor(cv_inputs)
+    
+    # cv output
+    targets_low  = torch.Tensor(output_train_df['min.log.lambda'].to_numpy().reshape(-1,1))
+    targets_high = torch.Tensor(output_train_df['max.log.lambda'].to_numpy().reshape(-1,1))
+    cv_outputs = torch.cat((targets_low, targets_high), dim=1)
+    best_n_ite = cv_learn(2, cv_inputs, cv_outputs, hidden_layers, hidden_size, 1, n_ites)
+    
     # trained model
-    model, _ = mlp_training(input_train_df, output_train_df, hidden_layers, hidden_size, chosen_feature, f_engineer, normalize, batch_size, margin, 1, lr, patience, verbose, epoch_step)
+    model, _ = mlp_training(input_train_df, output_train_df, hidden_layers, hidden_size, chosen_feature, f_engineer, normalize, batch_size, margin, best_n_ite, lr, patience, verbose, epoch_step)
     
     # test inputs
     inputs = inputs_val_df[chosen_feature].to_numpy()

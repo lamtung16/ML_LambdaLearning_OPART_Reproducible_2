@@ -8,7 +8,7 @@ from MLP import mlp_evaluate
 
 
 # dataset
-for dataset in ['cancer']:
+for dataset in ['cancer', 'detailed', 'systematic']:
 
     # training data
     fold_path = 'training_data/' + dataset + '/folds.csv'
@@ -40,8 +40,8 @@ for dataset in ['cancer']:
 
 
     def get_fold_dfs(fold):
-        train_inputs_df = inputs_df[inputs_df['sequenceID'].isin(fold_df[fold_df['fold'] == fold]['sequenceID'])]
-        train_outputs_df = outputs_df[outputs_df['sequenceID'].isin(fold_df[fold_df['fold'] == fold]['sequenceID'])]
+        train_inputs_df = inputs_df[inputs_df['sequenceID'].isin(fold_df[fold_df['fold'] != fold]['sequenceID'])]
+        train_outputs_df = outputs_df[outputs_df['sequenceID'].isin(fold_df[fold_df['fold'] != fold]['sequenceID'])]
         train_eval_df = evaluation_df[evaluation_df['sequenceID'].isin(fold_df[fold_df['fold'] != fold]['sequenceID'])]
         test_inputs_df = inputs_df[inputs_df['sequenceID'].isin(fold_df[fold_df['fold'] == fold]['sequenceID'])]
         test_eval_df = evaluation_df[evaluation_df['sequenceID'].isin(fold_df[fold_df['fold'] == fold]['sequenceID'])]
