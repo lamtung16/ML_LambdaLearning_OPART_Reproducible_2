@@ -9,7 +9,8 @@ from MLP import mlp_evaluate
 
 
 # dataset
-for dataset in ['detailed', 'systematic', 'cancer']:
+# for dataset in ['detailed', 'systematic', 'cancer']:
+for dataset in ['detailed', 'systematic']:
 
     # training data
     fold_path = 'training_data/' + dataset + '/folds.csv'
