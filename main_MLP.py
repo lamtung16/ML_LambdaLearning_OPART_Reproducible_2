@@ -70,7 +70,7 @@ for dataset in ['detailed', 'systematic']:
         # test
         test_inputs_df = inputs_df[inputs_df['sequenceID'].isin(fold_df[fold_df['fold'] == test_fold]['sequenceID'])]
         test_eval_df = evaluation_df[evaluation_df['sequenceID'].isin(fold_df[fold_df['fold'] == test_fold]['sequenceID'])]
-        return train_inputs_df, train_outputs_df, subtrain_inputs_df, subtrain_outputs_df, subtrain_eval_df, val_inputs_df, val_eval_df, test_inputs_df, test_eval_df
+        return train_inputs_df.sort_values(by='sequenceID'), train_outputs_df.sort_values(by='sequenceID'), subtrain_inputs_df.sort_values(by='sequenceID'), subtrain_outputs_df.sort_values(by='sequenceID'), subtrain_eval_df, val_inputs_df, val_eval_df, test_inputs_df, test_eval_df
 
 
 
